@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Footer, Navbar } from "../components";
 const ContactPage = () => {
+  const [name, setName] = useState("");
+  const [contact, setContact] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`Full Name : ${name} \n Email : ${contact} \n Password : ${message}`);
+  };
+
   return (
     <>
       <Navbar />
@@ -9,19 +18,21 @@ const ContactPage = () => {
         <hr />
         <div class="row my-4 h-100">
           <div className="col-md-4 col-lg-4 col-sm-8 mx-auto">
-            <form>
+            <form onSubmit={handleSubmit}>
               <div class="form my-3">
-                <label for="Name">Name</label>
+                <label htmlFor="Name">Name</label>
                 <input
-                  type="email"
+                  onChange={(e) => setName(e.target.value)}
+                  type="text"
                   class="form-control"
                   id="Name"
                   placeholder="Enter your name"
                 />
               </div>
               <div class="form my-3">
-                <label for="Email">Email</label>
+                <label htmlFor="Email">Email</label>
                 <input
+                  onChange={(e) => setContact(e.target.value)}
                   type="email"
                   class="form-control"
                   id="Email"
@@ -31,6 +42,7 @@ const ContactPage = () => {
               <div class="form  my-3">
                 <label for="Password">Message</label>
                 <textarea
+                  onChange={(e) => setMessage(e.target.value)}
                   rows={5}
                   class="form-control"
                   id="Password"
@@ -38,11 +50,7 @@ const ContactPage = () => {
                 />
               </div>
               <div className="text-center">
-                <button
-                  class="my-2 px-4 mx-auto btn btn-dark"
-                  type="submit"
-                  disabled
-                >
+                <button class="my-2 px-4 mx-auto btn btn-dark" type="submit">
                   Send
                 </button>
               </div>

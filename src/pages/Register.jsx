@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Navbar } from "../components";
 import { Link } from "react-router-dom";
 const Register = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`Full Name : ${name} \n Email : ${email} \n Password : ${pass}`);
+  };
   return (
     <>
       <Navbar />
@@ -10,11 +18,12 @@ const Register = () => {
         <hr />
         <div class="row my-4 h-100">
           <div className="col-md-4 col-lg-4 col-sm-8 mx-auto">
-            <form>
+            <form onSubmit={handleSubmit}>
               <div class="form my-3">
                 <label for="Name">Full Name</label>
                 <input
-                  type="email"
+                  onChange={(e) => setName(e.target.value)}
+                  type="text"
                   class="form-control"
                   id="Name"
                   placeholder="Enter Your Name"
@@ -23,6 +32,7 @@ const Register = () => {
               <div class="form my-3">
                 <label for="Email">Email address</label>
                 <input
+                  onChange={(e) => setEmail(e.target.value)}
                   type="email"
                   class="form-control"
                   id="Email"
@@ -32,6 +42,7 @@ const Register = () => {
               <div class="form  my-3">
                 <label for="Password">Password</label>
                 <input
+                  onChange={(e) => setPass(e.target.value)}
                   type="password"
                   class="form-control"
                   id="Password"
@@ -50,11 +61,7 @@ const Register = () => {
                 </p>
               </div>
               <div className="text-center">
-                <button
-                  class="my-2 mx-auto btn btn-dark"
-                  type="submit"
-                  disabled
-                >
+                <button class="my-2 mx-auto btn btn-dark" type="submit">
                   Register
                 </button>
               </div>
